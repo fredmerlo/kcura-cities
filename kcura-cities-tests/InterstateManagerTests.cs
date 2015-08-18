@@ -16,7 +16,7 @@ namespace kcura_cities_tests
             {
                 new Interstate {Name = "I-5"}, new Interstate {Name = "I-85"}, new Interstate {Name = "I-10"},
                 new Interstate {Name = "I-5"}, new Interstate {Name = "I-60"}, new Interstate {Name = "I-44"},
-                new Interstate {Name = "I-44"}, new Interstate {Name = "I-85"}, new Interstate {Name = "I-nvalid"}
+                new Interstate {Name = "I-44"}, new Interstate {Name = "I-85"}, new Interstate {Name = "I-nvalid"}, new Interstate {Name = "Invalid"}
             };
             InterstateManager = new InterstateManager{Interstates = rawInterstates.ToList()};
         }

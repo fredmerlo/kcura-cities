@@ -9,8 +9,12 @@
             get
             {
                 int result;
+                var parts = Name.Split('-');
 
-                return int.TryParse(Name.Split('-')[1], out result) ? result : -1;
+                if (parts.Length != 2)
+                    return -1;
+
+                return int.TryParse(parts[1], out result) ? result : -1;
             }
         }
     }
