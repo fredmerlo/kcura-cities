@@ -11,7 +11,7 @@ namespace kcura_cities_common.Manager
         public IEnumerable<InterstateCount> GetInterstateCount()
         {
 
-            return Interstates.OrderBy(o => o.Code).GroupBy(i => i.Name).Select(g => new InterstateCount{Name = g.Key, Count = g.Count()});
+            return Interstates.Where(w => w.Code > 0).OrderBy(o => o.Code).GroupBy(i => i.Name).Select(g => new InterstateCount{Name = g.Key, Count = g.Count()});
         }
     }
 }

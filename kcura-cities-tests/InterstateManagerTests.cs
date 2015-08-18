@@ -16,7 +16,7 @@ namespace kcura_cities_tests
             {
                 new Interstate {Name = "I-5"}, new Interstate {Name = "I-85"}, new Interstate {Name = "I-10"},
                 new Interstate {Name = "I-5"}, new Interstate {Name = "I-60"}, new Interstate {Name = "I-44"},
-                new Interstate {Name = "I-44"}, new Interstate {Name = "I-85"}
+                new Interstate {Name = "I-44"}, new Interstate {Name = "I-85"}, new Interstate {Name = "I-nvalid"}
             };
             InterstateManager = new InterstateManager{Interstates = rawInterstates.ToList()};
         }
@@ -39,7 +39,7 @@ namespace kcura_cities_tests
         }
 
         [Fact]
-        public void InterstateManagerReturnsInterstateCountByNameAscending()
+        public void InterstateManagerReturnsInterstateCountByNameAscendingAndIgnoresInvalidEntries()
         {
             var expected = new[] {"I-5","I-10","I-44","I-60","I-85"}.ToList();
 
@@ -53,8 +53,11 @@ namespace kcura_cities_tests
         {
             var expected = new[]
             {
-                new InterstateCount{Name = "I-5", Count = 2}, new InterstateCount{Name = "I-10", Count = 1}, new InterstateCount{Name = "I-44", Count = 2}, 
-                new InterstateCount{Name = "I-60", Count = 1}, new InterstateCount{Name = "I-85", Count = 2}, 
+                new InterstateCount{Name = "I-5", Count = 2}, 
+                new InterstateCount{Name = "I-10", Count = 1}, 
+                new InterstateCount{Name = "I-44", Count = 2}, 
+                new InterstateCount{Name = "I-60", Count = 1}, 
+                new InterstateCount{Name = "I-85", Count = 2}, 
             }.ToList();
 
             var actual = fixture.InterstateManager.GetInterstateCount().ToList();
