@@ -1,0 +1,48 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using kcura_cities_common.Manager;
+using kcura_cities_common.Models;
+using Xunit;
+
+namespace kcura_cities_tests
+{
+    public class CityManagerFixture
+    {
+        public CityManagerFixture()
+        {
+            var rawCities = new[]
+            {
+                new City {Population = 8}, new City {Population = 7}, new City {Population = 10}, new City {Population = 9}
+            };
+
+            CityManager = new CityManager {Cities = rawCities.ToList()};
+        }
+
+        public CityManager CityManager { get; set; }
+    }
+    public class CityManagerTests : IClassFixture<CityManagerFixture>
+    {
+        private CityManagerFixture fixture;
+
+        public CityManagerTests(CityManagerFixture fixture)
+        {
+            this.fixture = fixture;
+        }
+
+        [Fact]
+        public void CityManagerContainsListOfCity()
+        {
+            Assert.IsType<List<City>>(fixture.CityManager.Cities);
+        }
+
+        [Fact]
+        public void CityManagerReturnsListOfCitiesByPopulationHighestToLowest()
+        {
+            var expected = new[] { 10, 9, 8, 7 }.ToList();
+            var actual = fixture.CityManager.GetCitiesByPopulationDescending().Select(s => s.Population).ToList();
+
+            Assert.NotNull(actual); 
+            Assert.Equal(expected, actual);
+        }
+    }
+}
