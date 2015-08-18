@@ -12,7 +12,9 @@ namespace kcura_cities_tests
         {
             var rawCities = new[]
             {
-                new City {Population = 8}, new City {Population = 7}, new City {Population = 10}, new City {Population = 9}
+                new City {Population = 8, Name = "z"}, new City {Population = 7, Name = "b"},
+                new City {Population = 10, Name = "x"}, new City {Population = 9, Name = "a"},
+                new City {Population = 8, Name = "y"}
             };
 
             CityManager = new CityManager {Cities = rawCities.ToList()};
@@ -38,11 +40,31 @@ namespace kcura_cities_tests
         [Fact]
         public void CityManagerReturnsListOfCitiesByPopulationHighestToLowest()
         {
-            var expected = new[] { 10, 9, 8, 7 }.ToList();
+            var expected = new[] { 10, 9, 8, 8, 7 }.ToList();
             var actual = fixture.CityManager.GetCitiesByPopulationDescending().Select(s => s.Population).ToList();
 
-            Assert.NotNull(actual); 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CityManagerReturnsListOfCitiesByPopulationDescendingAndCityNameAscending()
+        {
+            var expected = new[]
+            {
+                new City {Population = 10, Name = "x"},
+                new City {Population = 9, Name = "a"},
+                new City {Population = 8, Name = "y"},
+                new City {Population = 8, Name = "z"},
+                new City {Population = 7, Name = "b"}
+            }.ToList();
+
+            var actual = fixture.CityManager.GetCitiesByPopulationDescending().ToList();
+
+            for (int i = 0; i < 5; i++)
+            {
+                Assert.Equal(expected[i].Population, actual[i].Population);
+                Assert.Equal(expected[i].Name, actual[i].Name);
+            }
         }
     }
 }
