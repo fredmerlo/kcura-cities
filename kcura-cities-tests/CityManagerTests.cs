@@ -38,10 +38,10 @@ namespace kcura_cities_tests
         }
 
         [Fact]
-        public void CityManagerReturnsListOfCitiesByPopulationHighestToLowest()
+        public void CityManagerReturnsListOfCitiesByPopulationDescending()
         {
             var expected = new[] { 10, 9, 8, 8, 7 }.ToList();
-            var actual = fixture.CityManager.GetCitiesByPopulationDescending().Select(s => s.Population).ToList();
+            var actual = fixture.CityManager.GetCitiesByPopulation().Select(s => s.Population).ToList();
 
             Assert.Equal(expected, actual);
         }
@@ -58,7 +58,7 @@ namespace kcura_cities_tests
                 new City {Population = 7, Name = "b"}
             }.ToList();
 
-            var actual = fixture.CityManager.GetCitiesByPopulationDescending().ToList();
+            var actual = fixture.CityManager.GetCitiesByPopulation().ToList();
 
             for (int i = 0; i < 5; i++)
             {

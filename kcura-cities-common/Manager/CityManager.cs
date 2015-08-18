@@ -8,7 +8,7 @@ namespace kcura_cities_common.Manager
     {
         public List<City> Cities { get; set; }
 
-        public IOrderedEnumerable<City> GetCitiesByPopulationDescending()
+        public IOrderedEnumerable<City> GetCitiesByPopulation()
         {
             return Cities.OrderBy(n => n.Name).OrderByDescending(p => p.Population);
         }
