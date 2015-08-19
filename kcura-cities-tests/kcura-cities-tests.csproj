@@ -57,8 +57,10 @@
     <Compile Include="DistanceManagerTests.cs" />
     <Compile Include="Fixtures\CityManagerFixture.cs" />
     <Compile Include="Fixtures\DistanceManagerFixture.cs" />
+    <Compile Include="Fixtures\FixtureHelpers.cs" />
     <Compile Include="Fixtures\InterstateManagerFixture.cs" />
     <Compile Include="InterstateManagerTests.cs" />
+    <Compile Include="OutputFormatterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

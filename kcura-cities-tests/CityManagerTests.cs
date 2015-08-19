@@ -24,7 +24,7 @@ namespace kcura_cities_tests
         [Fact]
         public void CityManagerReturnsListOfCitiesByPopulationDescending()
         {
-            var expected = new[] { 10, 9, 8, 8, 7 }.ToList();
+            var expected = new[] {10, 10, 9, 8, 8, 7 }.ToList();
             var actual = fixture.CityManager.GetCitiesByPopulation().Select(s => s.Population).ToList();
 
             Assert.Equal(expected, actual);
@@ -35,11 +35,12 @@ namespace kcura_cities_tests
         {
             var expected = new[]
             {
-                new City {Population = 10, Name = "x"},
-                new City {Population = 9, Name = "a"},
-                new City {Population = 8, Name = "y"},
-                new City {Population = 8, Name = "z"},
-                new City {Population = 7, Name = "b"}
+                new City {Population = 10, Name = "b"},
+                new City {Population = 10, Name = "f"},
+                new City {Population = 9, Name = "d"},
+                new City {Population = 8, Name = "a"},
+                new City {Population = 8, Name = "e"},
+                new City {Population = 7, Name = "c"}
             }.ToList();
 
             var actual = fixture.CityManager.GetCitiesByPopulation().ToList();
