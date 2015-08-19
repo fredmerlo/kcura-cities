@@ -53,17 +53,37 @@ namespace kcura_cities_tests
         }
 
         [Fact]
-        public void DistanceManagerGetDistanceFromCityReturnsListCityDistanceFromAGivenCity()
+        public void DistanceManagerGetDistanceFromCityReturnsListCityDistanceForD()
         {
             var expected =
                 new[]
                 {
-                    new CityDistance {Name = "d", Distance = 0}, new CityDistance {Name = "b", Distance = 1},
-                    new CityDistance {Name = "c", Distance = 1}, new CityDistance {Name = "f", Distance = 1},
-                    new CityDistance {Name = "a", Distance = 2}, new CityDistance {Name = "e", Distance = 2}
+                    new CityDistance {Name = "a", Distance = 2}, new CityDistance {Name = "e", Distance = 2},
+                    new CityDistance {Name = "b", Distance = 1}, new CityDistance {Name = "c", Distance = 1},
+                    new CityDistance {Name = "f", Distance = 1},new CityDistance {Name = "d", Distance = 0}
                 }.ToList();
 
             var actual = fixture.DistanceManager.GetDistanceFromCity("d");
+
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.Equal(expected[i].Name, actual[i].Name);
+                Assert.Equal(expected[i].Distance, actual[i].Distance);
+            }
+        }
+
+        [Fact]
+        public void DistanceManagerGetDistanceFromCityReturnsListCityDistanceForF()
+        {
+            var expected =
+                new[]
+                {
+                    new CityDistance {Name = "a", Distance = 2}, new CityDistance {Name = "c", Distance = 2},
+                    new CityDistance {Name = "e", Distance = 2}, new CityDistance {Name = "b", Distance = 1},
+                    new CityDistance {Name = "d", Distance = 1},new CityDistance {Name = "f", Distance = 0}
+                }.ToList();
+
+            var actual = fixture.DistanceManager.GetDistanceFromCity("f");
 
             for (int i = 0; i < expected.Count; i++)
             {
