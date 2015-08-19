@@ -47,5 +47,11 @@ namespace kcura_cities_tests
                 Assert.Equal(expected[interstate.Name].Name, actual[interstate.Name].Name);
             }
         }
+
+        [Fact]
+        public void DistanceManagerGetDistanceFromCityReturnsListCityDistance()
+        {
+            Assert.IsType<List<CityDistance>>(fixture.DistanceManager.GetDistanceFromCity(string.Empty));
+        }
     }
 }

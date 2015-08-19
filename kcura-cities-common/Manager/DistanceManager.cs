@@ -22,5 +22,10 @@ namespace kcura_cities_common.Manager
                 Interstates.Add(interstate.Name, interstate);
             }
         }
+
+        public List<CityDistance> GetDistanceFromCity(string city)
+        {
+            return new List<CityDistance>();
+        }
     }
 }
