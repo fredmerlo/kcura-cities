@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manager\CityManager.cs" />
+    <Compile Include="Manager\DistanceManager.cs" />
     <Compile Include="Manager\InterstateManager.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Interstate.cs" />

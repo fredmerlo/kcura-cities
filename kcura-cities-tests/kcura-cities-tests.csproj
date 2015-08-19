@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CityManagerTests.cs" />
+    <Compile Include="DistanceManagerTests.cs" />
     <Compile Include="InterstateManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
