@@ -45,8 +45,10 @@
     <Compile Include="Manager\InterstateManager.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\CityDistance.cs" />
+    <Compile Include="Models\CityInterstate.cs" />
     <Compile Include="Models\Interstate.cs" />
     <Compile Include="Models\InterstateCount.cs" />
+    <Compile Include="Models\TreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

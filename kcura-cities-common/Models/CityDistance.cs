@@ -2,5 +2,7 @@
 {
     public class CityDistance
     {
+        public string Name { get; set; }
+        public int Distance { get; set; }
     }
 }

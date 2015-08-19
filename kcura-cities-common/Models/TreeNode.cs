@@ -2,10 +2,10 @@ using System.Collections.Generic;
 
 namespace kcura_cities_common.Models
 {
-    public class City
+    public class TreeNode
     {
-        public int Population { get; set; }
         public string Name { get; set; }
-        public List<string> Interstates { get; set; }
+        public List<TreeNode> Kin { get; set; }
+        public int Distance { get; set; }
     }
 }

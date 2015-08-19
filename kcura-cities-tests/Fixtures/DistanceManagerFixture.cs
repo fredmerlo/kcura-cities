@@ -16,10 +16,10 @@ namespace kcura_cities_tests.Fixtures
                     {
                         Name = "a",
                         Interstates =
-                            new List<Interstate>
+                            new List<string>
                             {
-                                new Interstate {Name = "I-10"},
-                                new Interstate {Name = "I-20"}
+                                "I-10",
+                                "I-20"
                             }
                     }
                 },
@@ -29,11 +29,11 @@ namespace kcura_cities_tests.Fixtures
                     {
                         Name = "b",
                         Interstates =
-                            new List<Interstate>
+                            new List<string>
                             {
-                                new Interstate {Name = "I-10"},
-                                new Interstate {Name = "I-15"},
-                                new Interstate {Name = "I-40"}
+                                "I-10",
+                                "I-15",
+                                "I-40"
                             }
                     }
                 },
@@ -42,10 +42,10 @@ namespace kcura_cities_tests.Fixtures
                     {
                         Name = "c",
                         Interstates =
-                            new List<Interstate>
+                            new List<string>
                             {
-                                new Interstate {Name = "I-20"},
-                                new Interstate {Name = "I-35"}
+                                "I-20",
+                                "I-35"
                             }
                     }
                 },
@@ -54,10 +54,10 @@ namespace kcura_cities_tests.Fixtures
                     {
                         Name = "d",
                         Interstates =
-                            new List<Interstate>
+                            new List<string>
                             {
-                                new Interstate {Name = "I-15"},
-                                new Interstate {Name = "I-35"}
+                                "I-15",
+                                "I-35"
                             }
                     }
                 },
@@ -66,15 +66,15 @@ namespace kcura_cities_tests.Fixtures
                     {
                         Name = "e",
                         Interstates =
-                            new List<Interstate>
+                            new List<string>
                             {
-                                new Interstate {Name = "I-10"},
-                                new Interstate {Name = "I-20"},
-                                new Interstate {Name = "I-40"}
+                                "I-10",
+                                "I-20",
+                                "I-40"
                             }
                     }
                 },
-                {"f", new City {Name = "f", Interstates = new List<Interstate> {new Interstate {Name = "I-15"}}}}
+                {"f", new City {Name = "f", Interstates = new List<string> {"I-15"}}}
             };
 
             DistanceManager = new DistanceManager{Cities = rawCities, Interstates = new Dictionary<string, Interstate>()};
