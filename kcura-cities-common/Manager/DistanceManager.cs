@@ -21,36 +21,62 @@ namespace kcura_cities_common.Manager
 
         public List<CityDistance> GetDistanceFromCity(string city)
         {
-            var list = GetCityInterstateList();
-            var distances = BuildList(city, list, 0);
-            var uniq = new Dictionary<string, CityDistance>();
+            var crossReferencList = GetCityInterstateList();
 
-            foreach (var distance in distances.OrderBy( o => o.Distance))
+            var distanceClosestToFurthest = 
+                GetDistanceList(city, crossReferencList, 0)
+                .OrderBy(o => o.Distance);
+
+            var unique = FilterDuplicatesCities(distanceClosestToFurthest);
+
+            return GetSortedDistanceList(unique);
+        }
+
+        private static List<CityDistance> GetDistanceList(string currentCity, List<CityInterstate> crossReferencList, int distance)
+        {
+            var crossReferenceMinusCurrentCity = 
+                crossReferencList.Where(w => !w.City.Equals(currentCity))
+                                 .ToList();
+
+            var currentCityInterstates = 
+                crossReferencList.Where(w => w.City.Equals(currentCity))
+                                 .Select(s => s.Interstate);
+
+            var neighborCities = 
+                crossReferenceMinusCurrentCity
+                .Where(w => currentCityInterstates.Contains(w.Interstate))
+                .Select(s => s.City).Distinct();
+
+            var result = new List<CityDistance> {new CityDistance {Distance = distance, Name = currentCity}};
+
+            foreach (var neighbor in neighborCities)
             {
-                if (!uniq.ContainsKey(distance.Name))
+                result.AddRange(GetDistanceList(neighbor, crossReferenceMinusCurrentCity, distance + 1));
+            }
+
+            return result;
+        }
+
+        private static IEnumerable<CityDistance> FilterDuplicatesCities(IOrderedEnumerable<CityDistance> distanceClosestToFurthest)
+        {
+            var unique = new Dictionary<string, CityDistance>();
+
+            foreach (var distance in distanceClosestToFurthest)
+            {
+                if (!unique.ContainsKey(distance.Name))
                 {
-                    uniq.Add(distance.Name, distance);
+                    unique.Add(distance.Name, distance);
                 }
             }
 
-            return uniq.ToList().Select(s => s.Value).OrderBy(o => o.Name).OrderBy(o => o.Distance).ToList();
+            return unique.ToList().Select(s => s.Value);
         }
 
-        private List<CityDistance> BuildList(string city, List<CityInterstate> list, int distance)
+        private static List<CityDistance> GetSortedDistanceList(IEnumerable<CityDistance> uniqe)
         {
-            var newList = list.Where(w => !w.City.Equals(city)).ToList();
-            var interstates = list.Where(w => w.City.Equals(city)).Select(s => s.Interstate);
-            var cities = newList.Where(w => interstates.Contains(w.Interstate)).Select(s => s.City).Distinct();
-            var r = new List<CityDistance>();
-
-            r.Add(new CityDistance{Distance = distance, Name = city});
-
-            foreach (var city1 in cities)
-            {
-                r.AddRange(BuildList(city1, newList, distance + 1));
-            }
-
-            return r;
+            return uniqe.OrderBy(o => o.Name)
+                        .OrderByDescending(o => o.Distance)
+                        .ToList();
         }
     }
 }
