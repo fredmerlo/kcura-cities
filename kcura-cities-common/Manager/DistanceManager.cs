@@ -9,7 +9,7 @@ namespace kcura_cities_common.Manager
         public List<City> Cities { get; set; }
 
 
-        public List<CityInterstate> Init()
+        public List<CityInterstate> GetCityInterstateList()
         {
             var list = new List<CityInterstate>();
             foreach (var city in Cities)
@@ -19,8 +19,9 @@ namespace kcura_cities_common.Manager
             return list;
         }
 
-        public List<CityDistance> GetDistanceFromCity(string city, List<CityInterstate> list)
+        public List<CityDistance> GetDistanceFromCity(string city)
         {
+            var list = GetCityInterstateList();
             var tree = BuildTree(city, list, 0);
             var nodes = BuildNodeList(tree).OrderBy(o => o.Distance);
             var uniq = new Dictionary<string, CityDistance>();
@@ -62,31 +63,6 @@ namespace kcura_cities_common.Manager
             }
 
             return r;
-//            var newList = list.Where(w => !w.City.Equals(city)).ToList();
-//            var root = new TreeNode {Name = city, Depth = depth};
-//            root.Kin = FindNextOfKin(root, list);
-//
-//            foreach (var treeNode in root.Kin)
-//            {
-//                GetDistanceFromCity(treeNode.Name, newList, treeNode.Depth);
-//            }
-
-//            var newList = list.Where(w => !w.City.Equals(city)).ToList();
-//            var iList = list.Where(w => w.City.Equals(city)).Select(s => s.Interstate);
-//            var cityList = new List<CityInterstate>();
-//            var distanceList = new List<CityDistance>();
-//
-//            foreach (var i in iList)
-//            {
-//                cityList.AddRange(newList.Where(w => w.Interstate.Contains(i)));
-//            }
-
-//            foreach (var cityInterstate in cityList)
-//            {
-//                distanceList.Add(new CityDistance{Distance = distance++, Name = cityInterstate.City});
-//                var v = GetDistanceFromCity(cityInterstate.City, newList, distance++);
-//                distanceList.AddRange(v);
-//            }
         }
     }
 }
