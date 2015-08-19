@@ -77,7 +77,7 @@ namespace kcura_cities_tests.Fixtures
                 {"f", new City {Name = "f", Interstates = new List<Interstate> {new Interstate {Name = "I-15"}}}}
             };
 
-            DistanceManager = new DistanceManager{Cities = rawCities};
+            DistanceManager = new DistanceManager{Cities = rawCities, Interstates = new Dictionary<string, Interstate>()};
         }
 
         public DistanceManager DistanceManager { get; set; }
