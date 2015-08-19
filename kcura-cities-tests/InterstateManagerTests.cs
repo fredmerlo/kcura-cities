@@ -1,29 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using kcura_cities_common.Manager;
 using kcura_cities_common.Models;
+using kcura_cities_tests.Fixtures;
 using Xunit;
 
 namespace kcura_cities_tests
 {
-    public class InterstateManagerFixture
-    {
-        public List<Interstate> InterstateGroupA { get; set; }
-
-        public InterstateManagerFixture()
-        {
-            var rawInterstates = new[]
-            {
-                new Interstate {Name = "I-5"}, new Interstate {Name = "I-85"}, new Interstate {Name = "I-10"},
-                new Interstate {Name = "I-5"}, new Interstate {Name = "I-60"}, new Interstate {Name = "I-44"},
-                new Interstate {Name = "I-44"}, new Interstate {Name = "I-85"}, new Interstate {Name = "I-nvalid"}, new Interstate {Name = "Invalid"}
-            };
-            InterstateManager = new InterstateManager{Interstates = rawInterstates.ToList()};
-        }
-
-        public InterstateManager InterstateManager { get; set; }
-    }
-
     public class InterstateManagerTests : IClassFixture<InterstateManagerFixture>
     {
         private InterstateManagerFixture fixture;

@@ -1,12 +1,19 @@
 ﻿using System.Collections.Generic;
 using kcura_cities_common.Manager;
 using kcura_cities_common.Models;
+using kcura_cities_tests.Fixtures;
 using Xunit;
 
 namespace kcura_cities_tests
 {
-    public class DistanceManagerTests
+    public class DistanceManagerTests : IClassFixture<DistanceManagerFixture>
     {
+        private DistanceManagerFixture fixture;
+
+        public DistanceManagerTests(DistanceManagerFixture fixture)
+        {
+            this.fixture = fixture;
+        }
         [Fact]
         public void DistanceManagerContainsDictionaryOfCity()
         {
@@ -26,78 +33,6 @@ namespace kcura_cities_tests
         [Fact]
         public void DistanceManagerInitBuildsInterstateDictonaryFromCityInterstateList()
         {
-            var distanceManager = new DistanceManager
-            {
-                Cities = new Dictionary<string, City>
-                {
-                    {
-                        "a",
-                        new City
-                        {
-                            Name = "a",
-                            Interstates =
-                                new List<Interstate>
-                                {
-                                    new Interstate {Name = "I-10"},
-                                    new Interstate {Name = "I-20"}
-                                }
-                        }
-                    },
-                    {
-                        "b",
-                        new City
-                        {
-                            Name = "b",
-                            Interstates =
-                                new List<Interstate>
-                                {
-                                    new Interstate {Name = "I-10"},
-                                    new Interstate {Name = "I-15"},
-                                    new Interstate {Name = "I-40"}
-                                }
-                        }
-                    },
-                    {
-                        "c", new City
-                        {
-                            Name = "c",
-                            Interstates =
-                                new List<Interstate>
-                                {
-                                    new Interstate {Name = "I-20"},
-                                    new Interstate {Name = "I-35"}
-                                }
-                        }
-                    },
-                    {
-                        "d", new City
-                        {
-                            Name = "d",
-                            Interstates =
-                                new List<Interstate>
-                                {
-                                    new Interstate {Name = "I-15"},
-                                    new Interstate {Name = "I-35"}
-                                }
-                        }
-                    },
-                    {
-                        "e", new City
-                        {
-                            Name = "e",
-                            Interstates =
-                                new List<Interstate>
-                                {
-                                    new Interstate {Name = "I-10"},
-                                    new Interstate {Name = "I-20"},
-                                    new Interstate {Name = "I-40"}
-                                }
-                        }
-                    },
-                    {"f", new City {Name = "f", Interstates = new List<Interstate> {new Interstate {Name = "I-15"}}}}
-                }
-            };
-
             var expected = new Dictionary<string, Interstate>
             {
                 {"I-10", new Interstate {Name = "I-10"}},
@@ -107,8 +42,8 @@ namespace kcura_cities_tests
                 {"I-40", new Interstate {Name = "I-40"}}
             };
 
-            distanceManager.Init();
-            var actual = distanceManager.Interstates;
+            fixture.DistanceManager.Init();
+            var actual = fixture.DistanceManager.Interstates;
 
             Assert.NotNull(actual);
             foreach (var interstate in expected.Values)
