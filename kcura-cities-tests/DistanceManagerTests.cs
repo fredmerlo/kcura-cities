@@ -18,41 +18,44 @@ namespace kcura_cities_tests
         [Fact]
         public void DistanceManagerContainsDictionaryOfCity()
         {
-            Assert.IsType<Dictionary<string, City>>(fixture.DistanceManager.Cities);
+            Assert.IsType<List<City>>(fixture.DistanceManager.Cities);
         }
 
         [Fact]
-        public void DistanceManagerContainsDictionaryOfInterstate()
+        public void DistanceManagerInitBuildsCityInterstateListFromCityList()
         {
-            Assert.IsType<Dictionary<string, Interstate>>(fixture.DistanceManager.Interstates);
-        }
-
-        [Fact]
-        public void DistanceManagerInitBuildsInterstateDictonaryFromCityInterstateList()
-        {
-            var expected = new Dictionary<string, Interstate>
+            var expected = new[]
             {
-                {"I-10", new Interstate {Name = "I-10"}},
-                {"I-15", new Interstate {Name = "I-15"}},
-                {"I-20", new Interstate {Name = "I-20"}},
-                {"I-35", new Interstate {Name = "I-35"}},
-                {"I-40", new Interstate {Name = "I-40"}}
-            };
+                new CityInterstate {City = "a", Interstate = "I-10"},
+                new CityInterstate {City = "a", Interstate = "I-20"},
+                new CityInterstate {City = "b", Interstate = "I-10"},
+                new CityInterstate {City = "b", Interstate = "I-15"},
+                new CityInterstate {City = "b", Interstate = "I-40"},
+                new CityInterstate {City = "c", Interstate = "I-20"},
+                new CityInterstate {City = "c", Interstate = "I-35"},
+                new CityInterstate {City = "d", Interstate = "I-15"},
+                new CityInterstate {City = "d", Interstate = "I-35"},
+                new CityInterstate {City = "e", Interstate = "I-10"},
+                new CityInterstate {City = "e", Interstate = "I-20"},
+                new CityInterstate {City = "e", Interstate = "I-40"},
+                new CityInterstate {City = "f", Interstate = "I-15"}
+            }.ToList();
 
-            fixture.DistanceManager.Init();
-            var actual = fixture.DistanceManager.Interstates;
+            var actual = fixture.DistanceManager.Init();
 
             Assert.NotNull(actual);
-            foreach (var interstate in expected.Values)
+
+            for (int i = 0; i < expected.Count; i++)
             {
-                Assert.Equal(expected[interstate.Name].Name, actual[interstate.Name].Name);
+                Assert.Equal(expected[i].City, actual[i].City);
+                Assert.Equal(expected[i].Interstate, actual[i].Interstate);
             }
         }
 
         [Fact]
         public void DistanceManagerGetDistanceFromCityReturnsListCityDistance()
         {
-            Assert.IsType<List<CityDistance>>(fixture.DistanceManager.GetDistanceFromCity2(string.Empty, new List<CityInterstate>()));
+            Assert.IsType<List<CityDistance>>(fixture.DistanceManager.GetDistanceFromCity(string.Empty, new List<CityInterstate>()));
         }
 
         [Fact]
@@ -83,7 +86,7 @@ namespace kcura_cities_tests
                     new CityDistance {Name = "a", Distance = 2}, new CityDistance {Name = "e", Distance = 2}
                 }.ToList();
 
-            var actual = fixture.DistanceManager.GetDistanceFromCity2("d", data);
+            var actual = fixture.DistanceManager.GetDistanceFromCity("d", data);
 
             for (int i = 0; i < expected.Count; i++)
             {

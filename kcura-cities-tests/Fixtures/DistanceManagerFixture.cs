@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using kcura_cities_common.Manager;
 using kcura_cities_common.Models;
 
@@ -8,10 +9,8 @@ namespace kcura_cities_tests.Fixtures
     {
         public DistanceManagerFixture()
         {
-            var rawCities = new Dictionary<string, City>
+            var rawCities = new []
             {
-                {
-                    "a",
                     new City
                     {
                         Name = "a",
@@ -21,10 +20,7 @@ namespace kcura_cities_tests.Fixtures
                                 "I-10",
                                 "I-20"
                             }
-                    }
-                },
-                {
-                    "b",
+                    },
                     new City
                     {
                         Name = "b",
@@ -35,10 +31,8 @@ namespace kcura_cities_tests.Fixtures
                                 "I-15",
                                 "I-40"
                             }
-                    }
-                },
-                {
-                    "c", new City
+                    },
+                    new City
                     {
                         Name = "c",
                         Interstates =
@@ -47,10 +41,8 @@ namespace kcura_cities_tests.Fixtures
                                 "I-20",
                                 "I-35"
                             }
-                    }
-                },
-                {
-                    "d", new City
+                    },
+                    new City
                     {
                         Name = "d",
                         Interstates =
@@ -59,10 +51,8 @@ namespace kcura_cities_tests.Fixtures
                                 "I-15",
                                 "I-35"
                             }
-                    }
-                },
-                {
-                    "e", new City
+                    },
+                    new City
                     {
                         Name = "e",
                         Interstates =
@@ -72,12 +62,11 @@ namespace kcura_cities_tests.Fixtures
                                 "I-20",
                                 "I-40"
                             }
-                    }
-                },
-                {"f", new City {Name = "f", Interstates = new List<string> {"I-15"}}}
-            };
+                    },
+                    new City {Name = "f", Interstates = new List<string> {"I-15"}}
+            }.ToList();
 
-            DistanceManager = new DistanceManager{Cities = rawCities, Interstates = new Dictionary<string, Interstate>()};
+            DistanceManager = new DistanceManager{Cities = rawCities};
         }
 
         public DistanceManager DistanceManager { get; set; }

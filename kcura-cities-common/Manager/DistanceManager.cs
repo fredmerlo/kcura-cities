@@ -6,21 +6,17 @@ namespace kcura_cities_common.Manager
 {
     public class DistanceManager
     {
-        public Dictionary<string, City> Cities { get; set; }
-        public Dictionary<string, Interstate> Interstates { get; set; }
+        public List<City> Cities { get; set; }
 
-        public void Init()
+
+        public List<CityInterstate> Init()
         {
-            Interstates = new Dictionary<string, Interstate>();
-
-            var interstates =
-                Cities.SelectMany(cityItem => cityItem.Value.Interstates)
-                      .Where(interstate => !Interstates.ContainsKey(interstate));
-
-            foreach (var interstate in interstates)
+            var list = new List<CityInterstate>();
+            foreach (var city in Cities)
             {
-                Interstates.Add(interstate, new Interstate{Name = interstate});
+                list.AddRange(city.Interstates.Select(s => new CityInterstate{City = city.Name, Interstate = s}));
             }
+            return list;
         }
 
         public List<CityDistance> GetDistanceFromCity(string city, List<CityInterstate> list)
