@@ -8,12 +8,14 @@ namespace kcura_cities_common.Manager
 {
     public class DistanceManager : IStringOutputFormatter
     {
-        private string city;
         public List<City> Cities { get; set; }
+        public string City { get; set; }
+
+        public DistanceManager() { }
 
         public DistanceManager(string city)
         {
-            this.city = city;
+            City = city;
         }
         public List<CityInterstate> GetCityInterstateList()
         {
@@ -27,7 +29,7 @@ namespace kcura_cities_common.Manager
 
         public List<CityDistance> GetDistanceFromCity()
         {
-            return GetDistanceFromCity(city);
+            return GetDistanceFromCity(City);
         }
 
         public List<CityDistance> GetDistanceFromCity(string city)
@@ -105,7 +107,7 @@ namespace kcura_cities_common.Manager
         }
         private string GetCityFullName(string city)
         {
-            var fromCity = Cities.FirstOrDefault(w => w.Name.Equals(city));
+            var fromCity = Cities.FirstOrDefault(w => w.Name.ToLower().Equals(city.ToLower()));
             var fullName = fromCity == null ? "" : fromCity.FullName;
             return fullName;
         }
