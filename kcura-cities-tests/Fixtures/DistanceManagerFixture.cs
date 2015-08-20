@@ -7,7 +7,7 @@ namespace kcura_cities_tests.Fixtures
     {
         public DistanceManagerFixture()
         {
-            DistanceManager = new DistanceManager{Cities = FixtureHelpers.RawCities.ToList()};
+            DistanceManager = new DistanceManager("d"){Cities = FixtureHelpers.RawCities.ToList()};
         }
 
         public DistanceManager DistanceManager { get; set; }

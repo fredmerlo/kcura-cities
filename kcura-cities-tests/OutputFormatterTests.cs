@@ -38,7 +38,7 @@ namespace kcura_cities_tests
         public void OutputFormatterProducesCorrectFormatForDegreesFromCity()
         {
             var expected = "2 a, a\n2 e, e\n1 b, b\n1 c, c\n1 f, f\n0 d, d\n";
-            var actual = fixtureDistance.DistanceManager.GetDegreesFromCity("d").ToString();
+            var actual = fixtureDistance.DistanceManager.GetDegreesFromCity().ToString();
 
             Assert.Equal(expected, actual);
         }

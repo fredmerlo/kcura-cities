@@ -63,7 +63,7 @@ namespace kcura_cities_tests
                     new CityDistance {Name = "f, f", Distance = 1},new CityDistance {Name = "d, d", Distance = 0}
                 }.ToList();
 
-            var actual = fixture.DistanceManager.GetDistanceFromCity("d");
+            var actual = fixture.DistanceManager.GetDistanceFromCity();
 
             for (int i = 0; i < expected.Count; i++)
             {

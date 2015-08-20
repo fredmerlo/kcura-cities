@@ -8,9 +8,13 @@ namespace kcura_cities_common.Manager
 {
     public class DistanceManager : IStringOutputFormatter
     {
+        private string city;
         public List<City> Cities { get; set; }
 
-
+        public DistanceManager(string city)
+        {
+            this.city = city;
+        }
         public List<CityInterstate> GetCityInterstateList()
         {
             var list = new List<CityInterstate>();
@@ -19,6 +23,11 @@ namespace kcura_cities_common.Manager
                 list.AddRange(city.InterstateRef.Select(s => new CityInterstate{City = city.FullName, Interstate = s.Name}));
             }
             return list;
+        }
+
+        public List<CityDistance> GetDistanceFromCity()
+        {
+            return GetDistanceFromCity(city);
         }
 
         public List<CityDistance> GetDistanceFromCity(string city)
@@ -35,12 +44,12 @@ namespace kcura_cities_common.Manager
             return GetSortedDistanceList(unique);
         }
 
-        public StringBuilder GetDegreesFromCity(string name)
+        public StringBuilder GetDegreesFromCity()
         {
             var output = new StringBuilder();
             var format = "{0} {1}\n";
 
-            foreach (var city in GetDistanceFromCity(name))
+            foreach (var city in GetDistanceFromCity())
             {
                 output.AppendFormat(format, city.Distance, city.Name);
             }
@@ -103,7 +112,7 @@ namespace kcura_cities_common.Manager
 
         public StringBuilder GetOutput()
         {
-            return GetDegreesFromCity("d");
+            return GetDegreesFromCity();
         }
     }
 }
