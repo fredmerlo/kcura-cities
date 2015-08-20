@@ -61,6 +61,7 @@
     <Compile Include="Fixtures\InterstateManagerFixture.cs" />
     <Compile Include="InterstateManagerTests.cs" />
     <Compile Include="OutputFormatterTests.cs" />
+    <Compile Include="OutputWritterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
