@@ -19,7 +19,7 @@ namespace kcura_cities_tests
         [Fact]
         public void OutputFormatterProducesCorrectFormatForCitiesByPopulation()
         {
-            var expected = "10\r\nb, b\nInterstates: I-10, I-15, I-40\r\n10\r\nf, f\nInterstates: I-15\r\n9\r\nd, d\nInterstates: I-15, I-35\r\n8\r\na, a\nInterstates: I-10, I-20\r\n8\r\ne, e\nInterstates: I-10, I-20, I-40\r\n7\r\nc, c\nInterstates: I-20, I-35\r\n";
+            var expected = "10\n\nb, b\nInterstates: I-10, I-15, I-40\n\n10\n\nf, f\nInterstates: I-15\n\n9\n\nd, d\nInterstates: I-15, I-35\n\n8\n\na, a\nInterstates: I-10, I-20\n\n8\n\ne, e\nInterstates: I-10, I-20, I-40\n\n7\n\nc, c\nInterstates: I-20, I-35\n\n";
             var actual = fixtureCity.CityManager.GetCitiesByPopulationFormatted().ToString();
 
             Assert.Equal(expected, actual);

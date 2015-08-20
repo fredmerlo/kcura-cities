@@ -18,7 +18,7 @@ namespace kcura_cities_common.Manager
         public StringBuilder GetCitiesByPopulationFormatted()
         {
             var output = new StringBuilder();
-            var format = "{0}\r\n{1}\nInterstates: {2}\r\n";
+            var format = "{0}\n\n{1}\nInterstates: {2}\n\n";
 
             foreach (var city in GetCitiesByPopulation())
             {
