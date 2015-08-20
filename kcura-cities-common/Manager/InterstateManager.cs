@@ -2,10 +2,11 @@
 using System.Linq;
 using System.Text;
 using kcura_cities_common.Models;
+using kcura_cities_common.Processor;
 
 namespace kcura_cities_common.Manager
 {
-    public class InterstateManager
+    public class InterstateManager : IStringOutputFormatter
     {
         public List<Interstate> Interstates { get; set; }
 
@@ -28,6 +29,11 @@ namespace kcura_cities_common.Manager
                 output.AppendFormat(format, interstates.Name, interstates.Count);
             }
             return output;
+        }
+
+        public StringBuilder GetOutput()
+        {
+            return GetInterstatesByCity();
         }
     }
 }
