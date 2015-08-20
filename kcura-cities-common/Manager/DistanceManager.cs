@@ -14,22 +14,36 @@ namespace kcura_cities_common.Manager
             var list = new List<CityInterstate>();
             foreach (var city in Cities)
             {
-                list.AddRange(city.Interstates.Select(s => new CityInterstate{City = city.Name, Interstate = s}));
+                list.AddRange(city.Interstates.Select(s => new CityInterstate{City = city.FullName, Interstate = s}));
             }
             return list;
         }
 
         public List<CityDistance> GetDistanceFromCity(string city)
         {
+            var fullName = GetCityFullName(city);
             var crossReferencList = GetCityInterstateList();
 
             var distanceClosestToFurthest = 
-                GetDistanceList(city, crossReferencList, 0)
+                GetDistanceList(fullName, crossReferencList, 0)
                 .OrderBy(o => o.Distance);
 
             var unique = FilterDuplicatesCities(distanceClosestToFurthest);
 
             return GetSortedDistanceList(unique);
+        }
+
+        public string GetDegreesFromCity(string name)
+        {
+            var output = string.Empty;
+            var format = "{0} {1}\n";
+
+            foreach (var city in GetDistanceFromCity(name))
+            {
+                output += string.Format(format, city.Distance, city.Name);
+            }
+
+            return output;
         }
 
         private static List<CityDistance> GetDistanceList(string currentCity, List<CityInterstate> crossReferencList, int distance)
@@ -78,5 +92,12 @@ namespace kcura_cities_common.Manager
                         .OrderByDescending(o => o.Distance)
                         .ToList();
         }
+        private string GetCityFullName(string city)
+        {
+            var fromCity = Cities.FirstOrDefault(w => w.Name.Equals(city));
+            var fullName = fromCity == null ? "" : fromCity.FullName;
+            return fullName;
+        }
+
     }
 }

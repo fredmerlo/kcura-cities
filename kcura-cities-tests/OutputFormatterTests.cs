@@ -3,15 +3,17 @@ using Xunit;
 
 namespace kcura_cities_tests
 {
-    public class OutputFormatterTests:IClassFixture<CityManagerFixture>, IClassFixture<InterstateManagerFixture>
+    public class OutputFormatterTests:IClassFixture<CityManagerFixture>, IClassFixture<InterstateManagerFixture>, IClassFixture<DistanceManagerFixture>
     {
         private CityManagerFixture fixtureCity;
         private InterstateManagerFixture fixtureInterstate;
+        private DistanceManagerFixture fixtureDistance;
 
-        public OutputFormatterTests(CityManagerFixture fixtureCity, InterstateManagerFixture fixtureInterstate)
+        public OutputFormatterTests(CityManagerFixture fixtureCity, InterstateManagerFixture fixtureInterstate, DistanceManagerFixture fixtureDistance)
         {
             this.fixtureCity = fixtureCity;
             this.fixtureInterstate = fixtureInterstate;
+            this.fixtureDistance = fixtureDistance;
         }
 
         [Fact]
@@ -28,6 +30,15 @@ namespace kcura_cities_tests
         {
             var expected = "I-5 2\nI-10 1\nI-44 2\nI-60 1\nI-85 2\n";
             var actual = fixtureInterstate.InterstateManager.GetInterstatesByCity();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void OutputFormatterProducesCorrectFormatForDegreesFromCity()
+        {
+            var expected = "2 a, a\n2 e, e\n1 b, b\n1 c, c\n1 f, f\n0 d, d\n";
+            var actual = fixtureDistance.DistanceManager.GetDegreesFromCity("d");
 
             Assert.Equal(expected, actual);
         }

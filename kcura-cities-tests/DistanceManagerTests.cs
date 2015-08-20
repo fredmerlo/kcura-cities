@@ -26,19 +26,19 @@ namespace kcura_cities_tests
         {
             var expected = new[]
             {
-                new CityInterstate {City = "a", Interstate = "I-10"},
-                new CityInterstate {City = "a", Interstate = "I-20"},
-                new CityInterstate {City = "b", Interstate = "I-10"},
-                new CityInterstate {City = "b", Interstate = "I-15"},
-                new CityInterstate {City = "b", Interstate = "I-40"},
-                new CityInterstate {City = "c", Interstate = "I-20"},
-                new CityInterstate {City = "c", Interstate = "I-35"},
-                new CityInterstate {City = "d", Interstate = "I-15"},
-                new CityInterstate {City = "d", Interstate = "I-35"},
-                new CityInterstate {City = "e", Interstate = "I-10"},
-                new CityInterstate {City = "e", Interstate = "I-20"},
-                new CityInterstate {City = "e", Interstate = "I-40"},
-                new CityInterstate {City = "f", Interstate = "I-15"}
+                new CityInterstate {City = "a, a", Interstate = "I-10"},
+                new CityInterstate {City = "a, a", Interstate = "I-20"},
+                new CityInterstate {City = "b, b", Interstate = "I-10"},
+                new CityInterstate {City = "b, b", Interstate = "I-15"},
+                new CityInterstate {City = "b, b", Interstate = "I-40"},
+                new CityInterstate {City = "c, c", Interstate = "I-20"},
+                new CityInterstate {City = "c, c", Interstate = "I-35"},
+                new CityInterstate {City = "d, d", Interstate = "I-15"},
+                new CityInterstate {City = "d, d", Interstate = "I-35"},
+                new CityInterstate {City = "e, e", Interstate = "I-10"},
+                new CityInterstate {City = "e, e", Interstate = "I-20"},
+                new CityInterstate {City = "e, e", Interstate = "I-40"},
+                new CityInterstate {City = "f, f", Interstate = "I-15"}
             }.ToList();
 
             var actual = fixture.DistanceManager.GetCityInterstateList();
@@ -58,9 +58,9 @@ namespace kcura_cities_tests
             var expected =
                 new[]
                 {
-                    new CityDistance {Name = "a", Distance = 2}, new CityDistance {Name = "e", Distance = 2},
-                    new CityDistance {Name = "b", Distance = 1}, new CityDistance {Name = "c", Distance = 1},
-                    new CityDistance {Name = "f", Distance = 1},new CityDistance {Name = "d", Distance = 0}
+                    new CityDistance {Name = "a, a", Distance = 2}, new CityDistance {Name = "e, e", Distance = 2},
+                    new CityDistance {Name = "b, b", Distance = 1}, new CityDistance {Name = "c, c", Distance = 1},
+                    new CityDistance {Name = "f, f", Distance = 1},new CityDistance {Name = "d, d", Distance = 0}
                 }.ToList();
 
             var actual = fixture.DistanceManager.GetDistanceFromCity("d");
@@ -78,9 +78,9 @@ namespace kcura_cities_tests
             var expected =
                 new[]
                 {
-                    new CityDistance {Name = "a", Distance = 2}, new CityDistance {Name = "c", Distance = 2},
-                    new CityDistance {Name = "e", Distance = 2}, new CityDistance {Name = "b", Distance = 1},
-                    new CityDistance {Name = "d", Distance = 1},new CityDistance {Name = "f", Distance = 0}
+                    new CityDistance {Name = "a, a", Distance = 2}, new CityDistance {Name = "c, c", Distance = 2},
+                    new CityDistance {Name = "e, e", Distance = 2}, new CityDistance {Name = "b, b", Distance = 1},
+                    new CityDistance {Name = "d, d", Distance = 1},new CityDistance {Name = "f, f", Distance = 0}
                 }.ToList();
 
             var actual = fixture.DistanceManager.GetDistanceFromCity("f");
