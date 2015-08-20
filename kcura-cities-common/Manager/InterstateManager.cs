@@ -16,5 +16,17 @@ namespace kcura_cities_common.Manager
                               .GroupBy(g => g.Name)
                               .Select(s => new InterstateCount{Name = s.Key, Count = s.Count()});
         }
+
+        public string GetInterstatesByCity()
+        {
+            var output = string.Empty;
+            var format = "{0} {1}\n";
+
+            foreach (var interstates in GetInterstateCount())
+            {
+                output += string.Format(format, interstates.Name, interstates.Count);
+            }
+            return output;
+        }
     }
 }
