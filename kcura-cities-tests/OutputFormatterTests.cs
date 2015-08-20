@@ -20,7 +20,7 @@ namespace kcura_cities_tests
         public void OutputFormatterProducesCorrectFormatForCitiesByPopulation()
         {
             var expected = "10\r\nb, b\nInterstates: I-10, I-15, I-40\r\n10\r\nf, f\nInterstates: I-15\r\n9\r\nd, d\nInterstates: I-15, I-35\r\n8\r\na, a\nInterstates: I-10, I-20\r\n8\r\ne, e\nInterstates: I-10, I-20, I-40\r\n7\r\nc, c\nInterstates: I-20, I-35\r\n";
-            var actual = fixtureCity.CityManager.GetCitiesByPopulationFormatted();
+            var actual = fixtureCity.CityManager.GetCitiesByPopulationFormatted().ToString();
 
             Assert.Equal(expected, actual);
         }
@@ -29,7 +29,7 @@ namespace kcura_cities_tests
         public void OutputFormatterProducesCorrectFormatForInterstatesByCity()
         {
             var expected = "I-5 2\nI-10 1\nI-44 2\nI-60 1\nI-85 2\n";
-            var actual = fixtureInterstate.InterstateManager.GetInterstatesByCity();
+            var actual = fixtureInterstate.InterstateManager.GetInterstatesByCity().ToString();
 
             Assert.Equal(expected, actual);
         }
@@ -38,7 +38,7 @@ namespace kcura_cities_tests
         public void OutputFormatterProducesCorrectFormatForDegreesFromCity()
         {
             var expected = "2 a, a\n2 e, e\n1 b, b\n1 c, c\n1 f, f\n0 d, d\n";
-            var actual = fixtureDistance.DistanceManager.GetDegreesFromCity("d");
+            var actual = fixtureDistance.DistanceManager.GetDegreesFromCity("d").ToString();
 
             Assert.Equal(expected, actual);
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using kcura_cities_common.Models;
 
 namespace kcura_cities_common.Manager
@@ -33,14 +34,14 @@ namespace kcura_cities_common.Manager
             return GetSortedDistanceList(unique);
         }
 
-        public string GetDegreesFromCity(string name)
+        public StringBuilder GetDegreesFromCity(string name)
         {
-            var output = string.Empty;
+            var output = new StringBuilder();
             var format = "{0} {1}\n";
 
             foreach (var city in GetDistanceFromCity(name))
             {
-                output += string.Format(format, city.Distance, city.Name);
+                output.AppendFormat(format, city.Distance, city.Name);
             }
 
             return output;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using kcura_cities_common.Models;
 
 namespace kcura_cities_common.Manager
@@ -17,14 +18,14 @@ namespace kcura_cities_common.Manager
                               .Select(s => new InterstateCount{Name = s.Key, Count = s.Count()});
         }
 
-        public string GetInterstatesByCity()
+        public StringBuilder GetInterstatesByCity()
         {
-            var output = string.Empty;
+            var output = new StringBuilder();
             var format = "{0} {1}\n";
 
             foreach (var interstates in GetInterstateCount())
             {
-                output += string.Format(format, interstates.Name, interstates.Count);
+                output.AppendFormat(format, interstates.Name, interstates.Count);
             }
             return output;
         }
