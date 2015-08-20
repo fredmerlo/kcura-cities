@@ -1,10 +1,19 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using kcura_cities_common.Models;
 
 namespace kcura_cities_common.Processor
 {
     public class InputParser
     {
+        private string file;
+
+        public InputParser(string file)
+        {
+            this.file = file;
+        }
+
         public City ParseItemForCity(string item)
         {
             var parts = item.Split('|');
@@ -18,6 +27,18 @@ namespace kcura_cities_common.Processor
                 Population = population,
                 Interstates = parts[3].Split(';').ToList()
             };
+        }
+
+        public List<City> Parse()
+        {
+            var cities = new List<City>();
+
+            if (!string.IsNullOrEmpty(file))
+            {
+                cities.AddRange(File.ReadLines(file).Select(ParseItemForCity));
+            }
+
+            return cities;
         }
     }
 }
