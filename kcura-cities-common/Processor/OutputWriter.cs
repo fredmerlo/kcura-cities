@@ -6,17 +6,20 @@ namespace kcura_cities_common.Processor
     public class OutputWriter
     {
         private string fileName;
+        private IStringOutputFormatter formatter;
 
-        public OutputWriter(string fileName)
+        public OutputWriter(string fileName, IStringOutputFormatter formatter)
         {
-            this.fileName = fileName;
+            this.fileName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Substring(6) + "\\" + fileName;
+            this.formatter = formatter;
         }
 
         public void ProcessOutput()
         {
-            var file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Substring(6) + "\\" + fileName;
-
-            File.Create(file);
+            if (!string.IsNullOrEmpty(fileName) && null != formatter)
+            {
+                File.WriteAllText(fileName, formatter.GetOutput().ToString());
+            }
         }
     }
 }
