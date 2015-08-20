@@ -27,9 +27,9 @@ namespace kcura_cities_tests.Fixtures
                 Interstates =
                     new List<string>
                     {
-                        "I-10",
+                        "I-40",
                         "I-15",
-                        "I-40"
+                        "I-10",
                     }
             },
             new City

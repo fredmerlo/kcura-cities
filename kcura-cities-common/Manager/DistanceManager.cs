@@ -14,7 +14,7 @@ namespace kcura_cities_common.Manager
             var list = new List<CityInterstate>();
             foreach (var city in Cities)
             {
-                list.AddRange(city.Interstates.Select(s => new CityInterstate{City = city.FullName, Interstate = s}));
+                list.AddRange(city.InterstateRef.Select(s => new CityInterstate{City = city.FullName, Interstate = s.Name}));
             }
             return list;
         }

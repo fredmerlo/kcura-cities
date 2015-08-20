@@ -20,7 +20,7 @@ namespace kcura_cities_common.Manager
 
             foreach (var city in GetCitiesByPopulation())
             {
-                var interstates = string.Join(", ", city.Interstates);
+                var interstates = string.Join(", ", city.InterstateRef.Select(s => s.Name));
                 output += string.Format(format, city.Population, city.FullName, interstates);
             }
 
