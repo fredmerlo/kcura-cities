@@ -59,6 +59,7 @@
     <Compile Include="Fixtures\DistanceManagerFixture.cs" />
     <Compile Include="Fixtures\FixtureHelpers.cs" />
     <Compile Include="Fixtures\InterstateManagerFixture.cs" />
+    <Compile Include="InputParserTests.cs" />
     <Compile Include="InterstateManagerTests.cs" />
     <Compile Include="OutputFormatterTests.cs" />
     <Compile Include="OutputWritterTests.cs" />
@@ -72,6 +73,11 @@
       <Project>{af02358a-7eeb-4e37-a576-8c9e63dcc513}</Project>
       <Name>kcura-cities-common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sample_Cities.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

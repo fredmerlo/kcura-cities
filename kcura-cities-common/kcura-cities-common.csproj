@@ -48,6 +48,7 @@
     <Compile Include="Models\CityInterstate.cs" />
     <Compile Include="Models\Interstate.cs" />
     <Compile Include="Models\InterstateCount.cs" />
+    <Compile Include="Processor\InputParser.cs" />
     <Compile Include="Processor\IStringOutputFormatter.cs" />
     <Compile Include="Processor\OutputWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
