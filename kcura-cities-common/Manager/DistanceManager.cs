@@ -2,10 +2,11 @@
 using System.Linq;
 using System.Text;
 using kcura_cities_common.Models;
+using kcura_cities_common.Processor;
 
 namespace kcura_cities_common.Manager
 {
-    public class DistanceManager
+    public class DistanceManager : IStringOutputFormatter
     {
         public List<City> Cities { get; set; }
 
@@ -100,5 +101,9 @@ namespace kcura_cities_common.Manager
             return fullName;
         }
 
+        public StringBuilder GetOutput()
+        {
+            return GetDegreesFromCity("d");
+        }
     }
 }

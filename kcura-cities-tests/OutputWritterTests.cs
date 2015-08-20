@@ -62,5 +62,20 @@ namespace kcura_cities_tests
 
             Assert.Equal(expected, actual.First());
         }
+
+        [Fact]
+        public void OutputWriterProcessOutputForDistanceManager()
+        {
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Substring(6);
+            var file = "test.txt";
+            var expected = "2 a, a";
+
+            var wirter = new OutputWriter("test.txt", fixtureDistance.DistanceManager);
+            wirter.ProcessOutput();
+
+            var actual = File.ReadLines(path + "\\" + file);
+
+            Assert.Equal(expected, actual.First());
+        }
     }
 }
