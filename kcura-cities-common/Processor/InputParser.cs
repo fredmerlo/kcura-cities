@@ -1,4 +1,5 @@
-﻿using kcura_cities_common.Models;
+﻿using System.Linq;
+using kcura_cities_common.Models;
 
 namespace kcura_cities_common.Processor
 {
@@ -10,7 +11,13 @@ namespace kcura_cities_common.Processor
             var population = 0;
             int.TryParse(parts[0], out population);
 
-            return new City {Name = parts[1], State = parts[2], Population = population};
+            return new City
+            {
+                Name = parts[1],
+                State = parts[2],
+                Population = population,
+                Interstates = parts[3].Split(';').ToList()
+            };
         }
     }
 }
