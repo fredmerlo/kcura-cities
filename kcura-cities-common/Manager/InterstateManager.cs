@@ -10,6 +10,16 @@ namespace kcura_cities_common.Manager
     {
         public List<Interstate> Interstates { get; set; }
 
+        public List<City> Cities
+        {
+            set
+            {
+                var allInterstates = new List<Interstate>();
+                allInterstates.AddRange(value.SelectMany(s => s.InterstateRef).ToList());
+                Interstates = allInterstates;
+            }
+        }
+
         public IEnumerable<InterstateCount> GetInterstateCount()
         {
 
