@@ -33,7 +33,7 @@ namespace kcura_cities_common.Processor
         {
             var cities = new List<City>();
 
-            if (!string.IsNullOrEmpty(file))
+            if (!string.IsNullOrEmpty(file) && File.Exists(file))
             {
                 cities.AddRange(File.ReadLines(file).Select(ParseItemForCity));
             }
